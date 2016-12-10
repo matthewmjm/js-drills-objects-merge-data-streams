@@ -1,5 +1,21 @@
 function mergeDataStreams(stream1, stream2) {
     // your code here
+    var merge = {};
+    for (var i = 0; i < stream1.length; i++) {
+        merge[stream1[i].id] = stream1[i];
+    }
+    for (var key in merge) {
+        var setTwo = stream2.find(
+            function (item) {
+                return item.id === key;
+            });
+        for (var _key in setTwo) {
+            merge[key][_key] = setTwo[_key];
+        }
+    }
+    return Object.keys(merge).map(function (item) {
+        return merge[item];
+    });
 }
 
 // data
